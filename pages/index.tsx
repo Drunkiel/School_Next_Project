@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import ClientForm from "../components/Form";
+import ClientForm from "../components/Test";
 
 const Home: NextPage = () => {
   return (
@@ -12,6 +12,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ClientForm />
+
+      <div id="test" className={styles.alamakota}></div>
     </div>
   );
 };
