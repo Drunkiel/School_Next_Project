@@ -1,5 +1,6 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import styles from "../styles/Form.module.scss";
 
 let gifData: Array<any>;
@@ -12,19 +13,24 @@ export function getGifs() {
       "https://g.tenor.com/v1/search?q=" +
         "mems" +
         "&key=" +
-        "MY_TENOR_API_KEY" +
+        "X0A1PUWG8688" +
         "&limit=" +
         "1"
     ).then((res) => setDataURL(res.data));
   }, []);
 
   gifData = dataURL;
+
   return gifData || [];
 }
 
 export default function Test() {
+  const [src, setSrc] = React.useState(
+    "https://c.tenor.com/oZw_V7BcGCsAAAAd/ras-al-ghul-batman-begins.gif"
+  );
   getGifs();
-  console.log(gifData);
+
+  const test = Object.values(gifData);
 
   return (
     <div className={styles.container}>
@@ -32,19 +38,27 @@ export default function Test() {
         <input
           type="button"
           value={"button"}
-          onClick={() => (
-            <div>
-              <ul>
-                {gifData.map((gif) => (
-                  <li key={gif.id}>
-                    <img src={gif.url} alt="obraz" width={100} height={100} />
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+          onClick={() => console.log("ala")}
         />
+
+        <div>
+          <ul>
+            {test.map((gif) => (
+              <li key={Math.random()}>
+                <Image
+                  src={gif[0].media ? gif[0].media?.[0]?.gif.url : ""}
+                  alt="cos"
+                  width={100}
+                  height={100}
+                  // onError={() => setSrc("/static/error.jpg")}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
 }
+
+// gif[0].media[0].gif.url

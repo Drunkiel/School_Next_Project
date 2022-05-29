@@ -4,6 +4,9 @@ const nextConfig = {
   state: {
     dataURL: [],
   },
+  images: {
+    domains: ["media.tenor.com", "c.tenor.com"],
+  },
 };
 
 module.exports = nextConfig;
