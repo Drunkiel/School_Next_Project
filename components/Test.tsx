@@ -25,6 +25,9 @@ export function getGifs() {
 }
 
 export default function Test() {
+  const [src, setSrc] = React.useState(
+    "https://c.tenor.com/oZw_V7BcGCsAAAAd/ras-al-ghul-batman-begins.gif"
+  );
   getGifs();
 
   const test = Object.values(gifData);
@@ -42,7 +45,13 @@ export default function Test() {
           <ul>
             {test.map((gif) => (
               <li key={Math.random()}>
-                <Image src={gif[0]?.media[0]?.gif.url} />
+                <Image
+                  src={gif[0].media ? gif[0].media?.[0]?.gif.url : ""}
+                  alt="cos"
+                  width={100}
+                  height={100}
+                  // onError={() => setSrc("/static/error.jpg")}
+                />
               </li>
             ))}
           </ul>
