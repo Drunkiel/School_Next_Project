@@ -60,7 +60,7 @@ export default function Form() {
         <div>
           <ul>
             {dataURL.map((gif) => (
-              <li key={gif.id}>
+              <li key={Math.random()}>
                 <img src={gif.url} alt="obraz" width={100} height={100} />
               </li>
             ))}
