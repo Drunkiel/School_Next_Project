@@ -1,6 +1,5 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import styles from "../styles/Form.module.scss";
 
 let gifData: Array<any>;
@@ -10,8 +9,8 @@ export function getGifs() {
 
   useEffect(() => {
     Axios.get(
-      "https://g.tenor.com/v1/search?q=" +
-        "mems" +
+      "https://g.tenor.com/v1/random?q=" +
+        "mems" + //wpisując tu inną frazę będą pokazywać się inne gify
         "&key=" +
         "X0A1PUWG8688" +
         "&limit=" +
@@ -24,7 +23,7 @@ export function getGifs() {
   return gifData || [];
 }
 
-export default function Test() {
+export default function Gifs() {
   const [src, setSrc] = React.useState(
     "https://c.tenor.com/oZw_V7BcGCsAAAAd/ras-al-ghul-batman-begins.gif"
   );
@@ -35,22 +34,16 @@ export default function Test() {
   return (
     <div className={styles.container}>
       <div className={styles.form}>
-        <input
-          type="button"
-          value={"button"}
-          onClick={() => console.log("ala")}
-        />
-
         <div>
           <ul>
             {test.map((gif) => (
-              <li key={Math.random()}>
-                <Image
+              <li key={Math.random()} className={styles.list}>
+                <img
                   src={gif[0].media ? gif[0].media?.[0]?.gif.url : ""}
-                  alt="cos"
-                  width={100}
-                  height={100}
-                  // onError={() => setSrc("/static/error.jpg")}
+                  alt="tu powinien być gif"
+                  width={200}
+                  height={200}
+                  onError={() => setSrc("../public/vercel.svg")}
                 />
               </li>
             ))}
@@ -60,5 +53,3 @@ export default function Test() {
     </div>
   );
 }
-
-// gif[0].media[0].gif.url
